@@ -353,8 +353,23 @@ function isPalindrome(str) {
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
-  throw new Error('Not implemented');
+function findLongestWord(sentence) {
+  const array = sentence.split(' ');
+  let maxLength = 0;
+  let name = '';
+  for (let i = 0; i < array.length; i += 1) {
+    const element = array[i];
+    maxLength = Math.max(maxLength, element.length);
+  }
+  for (let i = 0; i < array.length; i += 1) {
+    const element = array[i];
+    if (element.length === maxLength) {
+      name = element;
+      break;
+    }
+  }
+
+  return name;
 }
 
 /**
@@ -367,8 +382,12 @@ function findLongestWord(/* sentence */) {
  *   reverseWords('Hello World') => 'olleH dlroW'
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
-function reverseWords(/* str */) {
-  throw new Error('Not implemented');
+function reverseWords(sentence) {
+  const array = sentence.split(' ');
+  const doubleArray = array.map((element) => {
+    return element.split('').reverse().join('');
+  });
+  return doubleArray.join(' ');
 }
 
 /**
@@ -382,8 +401,19 @@ function reverseWords(/* str */) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  throw new Error('Not implemented');
+function invertCase(str) {
+  const splitedString = str.split(' ');
+  const map = splitedString.map((element) => {
+    const splitedToLetters = element.split('');
+    const map2 = splitedToLetters.map((el) => {
+      if (el === el.toUpperCase()) {
+        return el.toLowerCase();
+      }
+      return el.toUpperCase();
+    });
+    return map2.join('');
+  });
+  return map.join(' ');
 }
 
 /**
@@ -399,8 +429,8 @@ function invertCase(/* str */) {
  *   getStringFromTemplate('John','Doe') => 'Hello, John Doe!'
  *   getStringFromTemplate('Chuck','Norris') => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate(/* firstName, lastName */) {
-  throw new Error('Not implemented');
+function getStringFromTemplate(firstName, lastName) {
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -413,12 +443,14 @@ function getStringFromTemplate(/* firstName, lastName */) {
  *   extractNameFromTemplate('Hello, John Doe!') => 'John Doe'
  *   extractNameFromTemplate('Hello, Chuck Norris!') => 'Chuck Norris'
  */
-function extractNameFromTemplate(/* value */) {
-  throw new Error('Not implemented');
+function extractNameFromTemplate(value) {
+  const helloWord = 'Hello, ';
+  const exclamationMark = '!';
+  return value.replace(helloWord, '').replace(exclamationMark, '');
 }
 
 /**
- * Remove the first and last angle brackets from tag string
+ * Remove the first and last angle brackets from tag string or Filter
  *
  * @param {string} str - The input tag.
  * @return {string} - The tag without the first and last angle brackets.
@@ -428,8 +460,10 @@ function extractNameFromTemplate(/* value */) {
  *   unbracketTag('<span>') => 'span'
  *   unbracketTag('<a>') => 'a'
  */
-function unbracketTag(/* str */) {
-  throw new Error('Not implemented');
+function unbracketTag(str) {
+  const openTag = '<';
+  const closeTag = '>';
+  return str.replace(openTag, '').replace(closeTag, '');
 }
 
 /**
